@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detonge Access</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="login-card" aria-labelledby="portal-title">
+      <p class="eyebrow">Private Workspace</p>
+      <h1 id="portal-title">Welcome to Detonge</h1>
+      <p class="subtitle">Enter your account details to continue into the app.</p>
+
+      <form id="auth-form" novalidate>
+        <label class="field-label" for="username">Account Name</label>
+        <input class="field-input" type="text" id="username" name="username" autocomplete="username" placeholder="e.g. detonge.admin" required>
+
+        <label class="field-label" for="password">Password</label>
+        <div class="password-wrap">
+          <input class="field-input" type="password" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" required>
+          <button type="button" class="reveal-btn" id="reveal-btn" aria-label="Show password">Show</button>
+        </div>
+
+        <div class="form-row">
+          <label class="remember-wrap" for="remember">
+            <input type="checkbox" id="remember">
+            Remember session
+          </label>
+          <span class="security-chip">Encrypted Login</span>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Unlock Account</button>
+      </form>
+
+      <p class="hint">For this demo, the password is case-sensitive.</p>
+      <p id="message" role="status" aria-live="polite"></p>
+      <a class="continue-link hidden" id="continue-link" href="#">Continue to App</a>
+    </section>
+  </main>
+
+  <div class="bg-shape shape-a"></div>
+  <div class="bg-shape shape-b"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
