@@ -1,11 +1,11 @@
 const form = document.getElementById("auth-form");
-const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const revealBtn = document.getElementById("reveal-btn");
 const message = document.getElementById("message");
 const continueLink = document.getElementById("continue-link");
 
-const REQUIRED_PASSWORD = "Detonge";
+const REQUIRED_PASSWORD = "Detondev";
+const ACCESS_KEY = "deton_access";
 
 function setMessage(type, text) {
   message.classList.remove("error", "success");
@@ -23,14 +23,7 @@ revealBtn.addEventListener("click", () => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const username = usernameInput.value.trim();
   const password = passwordInput.value;
-
-  if (!username) {
-    setMessage("error", "Enter your account name.");
-    usernameInput.focus();
-    return;
-  }
 
   if (!password) {
     setMessage("error", "Enter your password.");
@@ -45,19 +38,12 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  setMessage("success", `Access granted. Welcome, ${username}.`);
-
-  if (document.getElementById("remember").checked) {
-    localStorage.setItem("detonge_user", username);
-  } else {
-    localStorage.removeItem("detonge_user");
-  }
-
+  setMessage("success", "Access granted. Welcome to Deton.");
   continueLink.classList.remove("hidden");
 });
 
-const rememberedUser = localStorage.getItem("detonge_user");
-if (rememberedUser) {
-  usernameInput.value = rememberedUser;
-  document.getElementById("remember").checked = true;
-}
+continueLink.addEventListener("click", (event) => {
+  event.preventDefault();
+  sessionStorage.setItem(ACCESS_KEY, "granted");
+  window.location.href = "desktop.html";
+});

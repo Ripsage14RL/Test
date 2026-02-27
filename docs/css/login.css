@@ -1,32 +1,6 @@
-:root {
-  --bg-deep: #090e16;
-  --bg-soft: #152336;
-  --glass: rgba(10, 21, 34, 0.7);
-  --line: rgba(126, 170, 218, 0.28);
-  --text-main: #e8f3ff;
-  --text-soft: #9db3cc;
-  --accent: #4cd6ff;
-  --accent-2: #2e8cff;
-  --danger: #ff6b6b;
-  --ok: #6ef3b0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
-  min-height: 100vh;
   display: grid;
   place-items: center;
-  overflow: hidden;
-  color: var(--text-main);
-  font-family: "Sora", "Avenir Next", "Trebuchet MS", sans-serif;
-  background:
-    radial-gradient(circle at 10% 15%, rgba(46, 140, 255, 0.2), transparent 30%),
-    radial-gradient(circle at 85% 70%, rgba(76, 214, 255, 0.2), transparent 35%),
-    linear-gradient(125deg, var(--bg-deep), var(--bg-soft));
 }
 
 .page-shell {
@@ -112,31 +86,6 @@ h1 {
   cursor: pointer;
 }
 
-.form-row {
-  margin: 1rem 0 1.3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.remember-wrap {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-soft);
-  font-size: 0.86rem;
-}
-
-.security-chip {
-  border-radius: 999px;
-  border: 1px solid rgba(76, 214, 255, 0.45);
-  color: #9adfff;
-  font-size: 0.75rem;
-  padding: 0.28rem 0.55rem;
-  white-space: nowrap;
-}
-
 .submit-btn {
   width: 100%;
   border: 0;
@@ -184,43 +133,8 @@ h1 {
   border-bottom: 1px solid rgba(178, 235, 255, 0.4);
 }
 
-.hidden {
+.continue-link.hidden {
   display: none;
-}
-
-.bg-shape {
-  position: fixed;
-  border-radius: 50%;
-  z-index: 0;
-  filter: blur(3px);
-}
-
-.shape-a {
-  width: 300px;
-  height: 300px;
-  left: -80px;
-  top: -80px;
-  background: radial-gradient(circle, rgba(46, 140, 255, 0.55), rgba(46, 140, 255, 0));
-}
-
-.shape-b {
-  width: 360px;
-  height: 360px;
-  right: -120px;
-  bottom: -130px;
-  background: radial-gradient(circle, rgba(76, 214, 255, 0.5), rgba(76, 214, 255, 0));
-}
-
-.bg-grid {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.25;
-  background-image:
-    linear-gradient(rgba(184, 225, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184, 225, 255, 0.08) 1px, transparent 1px);
-  background-size: 46px 46px;
-  mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 70%);
 }
 
 @keyframes cardRise {
@@ -235,6 +149,12 @@ h1 {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .login-card {
+    animation: none !important;
+  }
+}
+
 @media (max-width: 540px) {
   .login-card {
     padding: 1.2rem;
@@ -243,10 +163,5 @@ h1 {
 
   h1 {
     font-size: 1.5rem;
-  }
-
-  .form-row {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }
