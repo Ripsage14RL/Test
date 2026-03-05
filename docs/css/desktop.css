@@ -1,3 +1,123 @@
 body.desktop-body {
   position: relative;
 }
+
+.desktop-ui {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.taskbar {
+  pointer-events: auto;
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  height: 58px;
+  border: 1px solid rgba(150, 204, 252, 0.25);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(11, 25, 40, 0.8), rgba(7, 18, 30, 0.85));
+  backdrop-filter: blur(12px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.6rem;
+}
+
+.start-btn {
+  height: 42px;
+  width: 42px;
+  border: 1px solid rgba(124, 193, 255, 0.4);
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(140deg, #0e3a63, #1f86cd);
+  display: grid;
+  place-items: center;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.start-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(51, 154, 235, 0.35);
+}
+
+.start-btn.is-open {
+  box-shadow: inset 0 0 0 2px rgba(190, 235, 255, 0.3);
+}
+
+.start-logo {
+  color: #eff8ff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.taskbar-spacer {
+  height: 1px;
+}
+
+.clock-btn {
+  border: 1px solid rgba(129, 187, 236, 0.25);
+  border-radius: 10px;
+  background: rgba(10, 27, 42, 0.75);
+  color: #d8edff;
+  padding: 0.45rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  min-width: 120px;
+}
+
+#taskbar-time {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#taskbar-date {
+  font-size: 0.68rem;
+  color: #9ec5e8;
+  line-height: 1.1;
+}
+
+.start-menu {
+  pointer-events: auto;
+  position: absolute;
+  left: 0.75rem;
+  bottom: calc(0.7rem + 58px + 0.55rem);
+  width: min(94vw, 290px);
+  border: 1px solid rgba(132, 192, 243, 0.26);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(10, 24, 39, 0.94), rgba(8, 17, 29, 0.96));
+  backdrop-filter: blur(13px);
+  padding: 0.95rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+.start-title {
+  margin: 0 0 0.7rem;
+  font-size: 0.88rem;
+  color: #b8daf7;
+  letter-spacing: 0.03em;
+}
+
+.start-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.42rem;
+}
+
+.start-list li {
+  border: 1px solid rgba(126, 186, 238, 0.18);
+  border-radius: 10px;
+  background: rgba(15, 35, 56, 0.7);
+  color: #e2f2ff;
+  padding: 0.48rem 0.56rem;
+  font-size: 0.83rem;
+}

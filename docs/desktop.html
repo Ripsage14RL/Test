@@ -8,6 +8,32 @@
   <link rel="stylesheet" href="css/desktop.css">
 </head>
 <body class="desktop-body">
+  <main class="desktop-ui">
+    <section class="start-menu hidden" id="start-menu" aria-label="Start Menu">
+      <h2 class="start-title">Deton Apps</h2>
+      <ul class="start-list">
+        <li>Files</li>
+        <li>Browser</li>
+        <li>Settings</li>
+        <li>Terminal</li>
+        <li>Notes</li>
+      </ul>
+    </section>
+
+    <footer class="taskbar" aria-label="Taskbar">
+      <button class="start-btn" id="start-btn" type="button" aria-expanded="false" aria-controls="start-menu">
+        <span class="start-logo">D</span>
+      </button>
+
+      <div class="taskbar-spacer" aria-hidden="true"></div>
+
+      <button class="clock-btn" id="clock-btn" type="button" aria-label="Time and date">
+        <span id="taskbar-time">--:--</span>
+        <span id="taskbar-date">-- --- ----</span>
+      </button>
+    </footer>
+  </main>
+
   <div class="bg-shape shape-a"></div>
   <div class="bg-shape shape-b"></div>
   <div class="bg-grid" aria-hidden="true"></div>
