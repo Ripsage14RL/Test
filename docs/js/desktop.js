@@ -42,6 +42,7 @@ const DOUBLE_D_WINDOW_MS = 420;
 const DEX_BROWSER_HOME_URL = "https://example.com";
 let lastDPressAt = 0;
 let fallbackTimer = null;
+let topWindowZ = 30;
 
 const dexBrowserState = { open: false, visible: false };
 const dexAppState = { open: false, visible: false };
@@ -111,6 +112,14 @@ function syncDexAppWindowState() {
   dexAppWindow.classList.toggle("hidden", !dexAppState.visible);
   taskbarDexApp.classList.toggle("hidden", !dexAppState.open);
   taskbarDexApp.classList.toggle("active", dexAppState.open && dexAppState.visible);
+}
+
+function bringWindowToFront(windowEl) {
+  if (!windowEl || windowEl.classList.contains("hidden")) {
+    return;
+  }
+  topWindowZ += 1;
+  windowEl.style.zIndex = String(topWindowZ);
 }
 
 function clearFallbackTimer() {
@@ -298,7 +307,7 @@ function ensureDexBrowserStarted() {
     dexBrowserState.visible = true;
     syncDexBrowserWindowState();
     if (browserTabs.length === 0) {
-      createBrowserTab(DEX_BROWSER_HOME_URL, true);
+      createBrowserTab("", true);
     }
   }
 }
@@ -307,6 +316,7 @@ function openDexBrowser() {
   ensureDexBrowserStarted();
   dexBrowserState.visible = true;
   syncDexBrowserWindowState();
+  bringWindowToFront(dexBrowserWindow);
   setStartMenuState(false);
 }
 
@@ -315,6 +325,7 @@ function openUrlInDexBrowserNewTab(url) {
   createBrowserTab(url, true);
   dexBrowserState.visible = true;
   syncDexBrowserWindowState();
+  bringWindowToFront(dexBrowserWindow);
   setStartMenuState(false);
 }
 
@@ -330,6 +341,7 @@ function openDexApp() {
   ensureDexAppStarted();
   dexAppState.visible = true;
   syncDexAppWindowState();
+  bringWindowToFront(dexAppWindow);
   setStartMenuState(false);
 }
 
@@ -517,8 +529,9 @@ taskbarDexBrowser.addEventListener("click", () => {
     openDexBrowser();
     return;
   }
-  dexBrowserState.visible = !dexBrowserState.visible;
+  dexBrowserState.visible = true;
   syncDexBrowserWindowState();
+  bringWindowToFront(dexBrowserWindow);
 });
 
 taskbarDexApp.addEventListener("click", () => {
@@ -526,8 +539,9 @@ taskbarDexApp.addEventListener("click", () => {
     openDexApp();
     return;
   }
-  dexAppState.visible = !dexAppState.visible;
+  dexAppState.visible = true;
   syncDexAppWindowState();
+  bringWindowToFront(dexAppWindow);
 });
 
 dexBrowserNewTab.addEventListener("click", () => {
@@ -602,6 +616,7 @@ dexBrowserMax.addEventListener("click", () => {
     return;
   }
   dexBrowserWindow.classList.toggle("maximized");
+  bringWindowToFront(dexBrowserWindow);
 });
 
 dexBrowserClose.addEventListener("click", () => {
@@ -621,6 +636,7 @@ dexAppMax.addEventListener("click", () => {
     return;
   }
   dexAppWindow.classList.toggle("maximized");
+  bringWindowToFront(dexAppWindow);
 });
 
 dexAppClose.addEventListener("click", () => {
@@ -642,8 +658,75 @@ dexBrowserFrame.addEventListener("load", () => {
   bindFrameLinkInterception();
 });
 
+dexBrowserWindow.addEventListener("mousedown", () => {
+  bringWindowToFront(dexBrowserWindow);
+});
+
+dexAppWindow.addEventListener("mousedown", () => {
+  bringWindowToFront(dexAppWindow);
+});
+
+function setupWindowDrag(windowEl) {
+  const handle = windowEl.querySelector(".app-window-head");
+  if (!handle) {
+    return;
+  }
+
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  handle.addEventListener("mousedown", (event) => {
+    if (event.button !== 0) {
+      return;
+    }
+
+    if (event.target.closest(".window-actions")) {
+      return;
+    }
+
+    if (windowEl.classList.contains("maximized")) {
+      return;
+    }
+
+    const rect = windowEl.getBoundingClientRect();
+    offsetX = event.clientX - rect.left;
+    offsetY = event.clientY - rect.top;
+    isDragging = true;
+    windowEl.style.transform = "none";
+    windowEl.style.left = `${rect.left}px`;
+    windowEl.style.top = `${rect.top}px`;
+    bringWindowToFront(windowEl);
+    event.preventDefault();
+  });
+
+  document.addEventListener("mousemove", (event) => {
+    if (!isDragging) {
+      return;
+    }
+
+    const rect = windowEl.getBoundingClientRect();
+    const maxLeft = Math.max(0, window.innerWidth - rect.width);
+    const maxTop = Math.max(0, window.innerHeight - rect.height - 64);
+    const left = Math.min(Math.max(0, event.clientX - offsetX), maxLeft);
+    const top = Math.min(Math.max(0, event.clientY - offsetY), maxTop);
+
+    windowEl.style.left = `${left}px`;
+    windowEl.style.top = `${top}px`;
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+}
+
+setupWindowDrag(dexBrowserWindow);
+setupWindowDrag(dexAppWindow);
+
 updateClock();
 syncDexBrowserWindowState();
 syncDexAppWindowState();
 updateDexBrowserNavState();
+bringWindowToFront(dexBrowserWindow);
+bringWindowToFront(dexAppWindow);
 setInterval(updateClock, 30000);
