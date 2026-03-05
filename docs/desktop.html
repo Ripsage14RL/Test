@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deton Desktop</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/desktop.css">
+</head>
+<body class="desktop-body">
+  <main class="desktop-ui">
+    <section class="start-menu hidden" id="start-menu" aria-label="Start Menu">
+      <h2 class="start-title">DETON</h2>
+      <ul class="start-list">
+        <li>
+          <button class="app-tile dex-tile" id="open-dex-browser" type="button" aria-label="Open DEX Browser">
+            <img src="assets/dex-browser-logo.png" alt="DEX Browser" class="tile-logo-img">
+          </button>
+        </li>
+        <li>
+          <button class="app-tile dex-tile" id="open-dex-app" type="button" aria-label="Open DEX">
+            <img src="assets/dex-logo.png" alt="DEX" class="tile-logo-img">
+          </button>
+        </li>
+        <li class="app-tile" aria-label="App placeholder"></li>
+        <li class="app-tile" aria-label="App placeholder"></li>
+        <li class="app-tile" aria-label="App placeholder"></li>
+        <li class="app-tile" aria-label="App placeholder"></li>
+        <li class="app-tile" aria-label="App placeholder"></li>
+        <li class="app-tile" aria-label="App placeholder"></li>
+      </ul>
+    </section>
+
+    <footer class="taskbar" aria-label="Taskbar">
+      <button class="start-btn" id="start-btn" type="button" aria-expanded="false" aria-controls="start-menu">
+        <span class="start-logo">D</span>
+      </button>
+
+
+      <div class="taskbar-apps" id="taskbar-apps" aria-label="Open apps">
+        <button class="taskbar-app hidden" id="taskbar-dex-browser" type="button" aria-label="DEX Browser">
+          <img src="assets/dex-browser-logo.png" alt="DEX Browser" class="taskbar-app-logo">
+        </button>
+        <button class="taskbar-app hidden" id="taskbar-dex-app" type="button" aria-label="DEX">
+          <img src="assets/dex-logo.png" alt="DEX" class="taskbar-app-logo">
+        </button>
+      </div>
+
+      <div class="taskbar-right">
+        <span class="network-status" id="taskbar-network" aria-live="polite">Online</span>
+        <button class="clock-btn" id="clock-btn" type="button" aria-label="Time and date">
+          <span id="taskbar-time">--:--</span>
+          <span id="taskbar-date">-- --- ----</span>
+        </button>
+      </div>
+    </footer>
+
+    <section class="app-window hidden" id="dex-browser-window" aria-label="DEX Browser">
+      <header class="app-window-head">
+        <div class="window-brand">
+          <span class="window-logo">DX</span>
+          <span class="window-title">DEX Browser</span>
+        </div>
+        <div class="window-actions">
+          <button type="button" class="window-action" id="dex-browser-min" aria-label="Minimize">-</button>
+          <button type="button" class="window-action" id="dex-browser-max" aria-label="Maximize">+</button>
+          <button type="button" class="window-action close" id="dex-browser-close" aria-label="Close">x</button>
+        </div>
+      </header>
+
+      <div class="dex-tabs-row">
+        <div class="dex-tabs" id="dex-browser-tabs" aria-label="DEX Browser Tabs"></div>
+        <button type="button" class="new-tab-btn" id="dex-browser-new-tab" aria-label="New tab">+</button>
+      </div>
+
+      <form class="browser-toolbar" id="dex-browser-form">
+        <div class="nav-controls">
+          <button type="button" class="tool-btn" id="dex-browser-back" aria-label="Back">&#8592;</button>
+          <button type="button" class="tool-btn" id="dex-browser-forward" aria-label="Forward">&#8594;</button>
+          <button type="button" class="tool-btn" id="dex-browser-reload" aria-label="Reload">&#10227;</button>
+          <button type="button" class="tool-btn" id="dex-browser-home" aria-label="Home">&#8962;</button>
+        </div>
+        <input type="text" class="address-bar" id="dex-browser-address" placeholder="Enter full URL (example.com)">
+        <button type="submit" class="go-btn" id="dex-browser-go">Go</button>
+      </form>
+
+      <div class="browser-meta" id="dex-browser-meta">DEX supports URL navigation. Search queries are disabled in this version.</div>
+      <iframe class="browser-view" id="dex-browser-frame" title="DEX Browser View" referrerpolicy="no-referrer"></iframe>
+      <div class="frame-fallback hidden" id="dex-browser-fallback">
+        This page is not supported in DEX because it blocks embedded viewing.
+        <a id="dex-browser-open-tab" href="#">Open in DEX new tab</a>
+      </div>
+    </section>
+
+    <section class="app-window hidden dex-app-window" id="dex-app-window" aria-label="DEX App">
+      <header class="app-window-head">
+        <div class="window-brand">
+          <span class="window-logo">D</span>
+          <span class="window-title">DEX</span>
+        </div>
+        <div class="window-actions">
+          <button type="button" class="window-action" id="dex-app-min" aria-label="Minimize">-</button>
+          <button type="button" class="window-action" id="dex-app-max" aria-label="Maximize">+</button>
+          <button type="button" class="window-action close" id="dex-app-close" aria-label="Close">x</button>
+        </div>
+      </header>
+      <div class="dex-app-body">
+        <div id="deployment-e2a660d9-68ae-4cd9-b4d0-c9445fafe56b"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="bg-shape shape-a"></div>
+  <div class="bg-shape shape-b"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <script src="js/desktop.js"></script>
+  <script src="https://studio.pickaxe.co/api/embed/bundle.js" defer></script>
+</body>
+</html>

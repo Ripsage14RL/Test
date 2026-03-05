@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deton</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <main class="page-shell" id="login-screen">
+    <section class="login-card" aria-labelledby="portal-title">
+      <p class="eyebrow">Private Developer Page</p>
+      <h1 id="portal-title">Welcome to Deton</h1>
+      <p class="subtitle">Enter the password to continue</p>
+
+      <form id="auth-form" novalidate>
+        <label class="field-label" for="password">Password</label>
+        <div class="password-wrap">
+          <input class="field-input" type="password" id="password" name="password" autocomplete="current-password" placeholder="Enter Dev Password" required>
+          <button type="button" class="reveal-btn" id="reveal-btn" aria-label="Show password">Show</button>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Continue</button>
+      </form>
+
+      <p class="hint">The password is case-sensitive.</p>
+      <p id="message" role="status" aria-live="polite"></p>
+      <a class="continue-link hidden" id="continue-link" href="desktop.html">Continue to App</a>
+    </section>
+  </main>
+
+  <div class="bg-shape shape-a"></div>
+  <div class="bg-shape shape-b"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
