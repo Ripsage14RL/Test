@@ -10,6 +10,7 @@ const startBtn = document.getElementById("start-btn");
 const startMenu = document.getElementById("start-menu");
 const timeEl = document.getElementById("taskbar-time");
 const dateEl = document.getElementById("taskbar-date");
+const networkEl = document.getElementById("taskbar-network");
 
 const openDexBrowserBtn = document.getElementById("open-dex-browser");
 const openDexAppBtn = document.getElementById("open-dex-app");
@@ -59,6 +60,12 @@ function updateClock() {
     month: "short",
     day: "numeric"
   });
+}
+
+function updateNetworkStatus() {
+  const isOnline = navigator.onLine;
+  networkEl.textContent = isOnline ? "Online" : "Offline";
+  networkEl.classList.toggle("offline", !isOnline);
 }
 
 function setStartMenuState(isOpen) {
@@ -724,9 +731,12 @@ setupWindowDrag(dexBrowserWindow);
 setupWindowDrag(dexAppWindow);
 
 updateClock();
+updateNetworkStatus();
 syncDexBrowserWindowState();
 syncDexAppWindowState();
 updateDexBrowserNavState();
 bringWindowToFront(dexBrowserWindow);
 bringWindowToFront(dexAppWindow);
 setInterval(updateClock, 30000);
+window.addEventListener("online", updateNetworkStatus);
+window.addEventListener("offline", updateNetworkStatus);

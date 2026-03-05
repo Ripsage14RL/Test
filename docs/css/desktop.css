@@ -93,6 +93,30 @@ body.desktop-body {
   box-shadow: 0 0 0 1px rgba(145, 214, 255, 0.35) inset;
 }
 
+.taskbar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.network-status {
+  border: 1px solid rgba(129, 187, 236, 0.3);
+  border-radius: 10px;
+  background: rgba(10, 27, 42, 0.72);
+  color: #cde9ff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.35rem 0.55rem;
+  line-height: 1;
+  min-width: 70px;
+  text-align: center;
+}
+
+.network-status.offline {
+  border-color: rgba(255, 128, 128, 0.42);
+  color: #ffd8d8;
+}
+
 .clock-btn {
   border: 1px solid rgba(129, 187, 236, 0.25);
   border-radius: 10px;

@@ -46,10 +46,13 @@
         </button>
       </div>
 
-      <button class="clock-btn" id="clock-btn" type="button" aria-label="Time and date">
-        <span id="taskbar-time">--:--</span>
-        <span id="taskbar-date">-- --- ----</span>
-      </button>
+      <div class="taskbar-right">
+        <span class="network-status" id="taskbar-network" aria-live="polite">Online</span>
+        <button class="clock-btn" id="clock-btn" type="button" aria-label="Time and date">
+          <span id="taskbar-time">--:--</span>
+          <span id="taskbar-date">-- --- ----</span>
+        </button>
+      </div>
     </footer>
 
     <section class="app-window hidden" id="dex-browser-window" aria-label="DEX Browser">
